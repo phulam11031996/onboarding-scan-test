@@ -18,7 +18,7 @@ if (
   console.error("script requires clinicSdkKey, and themeColor");
 }
 
-const iframeSrcScan = `https://develop.d3t73tihpl8ypn.amplifyapp.com/?formName=${formName}&clinicSdkKey=${clinicSdkKey}&themeColor=${encodeURIComponent(themeColor)}#`;
+const iframeSrcScan = `http://localhost:3000/?formName=${formName}&clinicSdkKey=${clinicSdkKey}&themeColor=${encodeURIComponent(themeColor)}#`;
 
 const modalBody = document.createElement("div");
 modalBody.id = "scan-modal-k28vew83vj";
@@ -94,19 +94,6 @@ iframeClinicosOnboarding.setAttribute("allow", "camera;");
 let iframeUrl = iframeClinicosOnboarding.getAttribute("src");
 iframeClinicosOnboarding.setAttribute("src", iframeUrl + "?v=2");
 
-let timeoutId;
-let messageAcknowledged = false;
-
-window.addEventListener("message", (ev) => {
-  if (ev.data.message === "close modal") {
-    closeButtonBody.click();
-  }
-  if (ev.data.message === "procedure update received") {
-    messageAcknowledged = true;
-    clearTimeout(timeoutId);
-  }
-});
-
 function sendProcedureUpdate(procedure) {
   const message = {
     message: "procedure update",
@@ -121,16 +108,11 @@ function sendProcedureUpdate(procedure) {
     if (!messageAcknowledged) {
       sendProcedureUpdate();
     }
-  }, 500);
+  }, 2000);
 }
 
 window.addEventListener("procedure-update", (event) => {
   const procedure = event.detail.procedure;
-  messageAcknowledged = false;
-  sendProcedureUpdate(procedure);
-  timeoutId = setTimeout(() => {
-    if (!messageAcknowledged) {
-      sendProcedureUpdate(procedure);
-    }
-  }, 500);
+  const iframeSrcScan = `http://localhost:3000/?formName=${formName}&clinicSdkKey=${clinicSdkKey}&themeColor=${encodeURIComponent(themeColor)}&procedure=${procedure}#`;
+  iframeClinicosOnboarding.src = iframeSrcScan;
 });
