@@ -18,11 +18,12 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 500px;
+  width: 300px;
   color: white;
   font-weight: bold;
 }
 
 h1 {
   color: white;
+  font-size: 20px;
 }
