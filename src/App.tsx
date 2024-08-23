@@ -45,6 +45,8 @@ const nonAiSupportedProceduresBody = [
   "VAGINAL_PRP",
 ];
 
+const invalidProcedure = ["INVALID_PROCEDURE"];
+
 const nonAiSupportedProceduresBreast = ["LIPOSUCTION"];
 
 function App() {
@@ -79,6 +81,12 @@ function App() {
           padding: "40px",
         }}
       >
+        <h1>Invalid Procedure</h1>
+        {invalidProcedure.map((procedure) => (
+          <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
+            {procedure}
+          </button>
+        ))}
         <h1>AI Supported Procedures</h1>
         {aiSupportedProcedures.map((procedure) => (
           <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
