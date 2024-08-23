@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  background-color: #282c34;
+  width: 100svw;
+  height: 100svh;
+}
+
+button {
+  background-color: #00b7f4;
+  color: #282c34;
+  font-size: 1em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 500px;
+  color: white;
+  font-weight: bold;
+}
+
+h1 {
+  color: white;
+}
