@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 
 const aiSupportedProcedures = [
@@ -45,8 +45,6 @@ const nonAiSupportedProceduresBody = [
   "VAGINAL_PRP",
 ];
 
-const invalidProcedure = ["INVALID_PROCEDURE"];
-
 const nonAiSupportedProceduresBreast = ["LIPOSUCTION"];
 
 function App() {
@@ -63,6 +61,13 @@ function App() {
     if (modal) modal.style.display = "block";
   };
 
+  useEffect(() => {
+    window.addEventListener("message", (ev) => {
+      // Do something with your image data
+      console.log(ev.data);
+    });
+  }, []);
+
   return (
     <div className="App">
       <div
@@ -76,12 +81,6 @@ function App() {
       >
         <h1>AI Supported Procedures</h1>
         {aiSupportedProcedures.map((procedure) => (
-          <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
-            {procedure}
-          </button>
-        ))}
-        <h1>Invalid procedure value</h1>
-        {invalidProcedure.map((procedure) => (
           <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
             {procedure}
           </button>

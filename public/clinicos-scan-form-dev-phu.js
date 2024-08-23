@@ -116,3 +116,9 @@ window.addEventListener("procedure-update", (event) => {
   const iframeSrcScan = `http://localhost:3000/?formName=${formName}&clinicSdkKey=${clinicSdkKey}&themeColor=${encodeURIComponent(themeColor)}&procedure=${procedure}#`;
   iframeClinicosOnboarding.src = iframeSrcScan;
 });
+
+window.addEventListener("message", (ev) => {
+  if (ev.data.message === "close modal") {
+    closeButtonBody.click();
+  }
+});
