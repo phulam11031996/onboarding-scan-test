@@ -83,46 +83,31 @@ function App() {
       >
         <h1>Invalid Procedure</h1>
         {invalidProcedure.map((procedure) => (
-          <button
-            key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
-          >
+          <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
             {procedure}
           </button>
         ))}
         <h1>AI Supported Procedures</h1>
         {aiSupportedProcedures.map((procedure) => (
-          <button
-            key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
-          >
+          <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
             {procedure}
           </button>
         ))}
         <h1>Face Scan Procedures</h1>
         {nonAiSupportedProceduresFace.map((procedure) => (
-          <button
-            key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
-          >
+          <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
             {procedure}
           </button>
         ))}
         <h1>Torso Scan Procedures</h1>
         {nonAiSupportedProceduresBreast.map((procedure) => (
-          <button
-            key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
-          >
+          <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
             {procedure}
           </button>
         ))}
         <h1>Body Scan Procedures</h1>
         {nonAiSupportedProceduresBody.map((procedure) => (
-          <button
-            key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
-          >
+          <button onClick={(e) => handleShowClinicosForm(e, procedure)}>
             {procedure}
           </button>
         ))}
