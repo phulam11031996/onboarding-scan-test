@@ -50,13 +50,17 @@ const invalidProcedure = ["INVALID_PROCEDURE"];
 const nonAiSupportedProceduresBreast = ["LIPOSUCTION"];
 
 function App() {
+  // name, email, phone number
   const handleShowClinicosForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     procedure: string,
+    name: string,
+    email: string,
+    phone: string,
   ) => {
     e.preventDefault();
     const procedureEvent = new CustomEvent("procedure-update", {
-      detail: { procedure },
+      detail: { procedure, name, email, phone },
     });
     window.dispatchEvent(procedureEvent);
     const modal = document.getElementById("scan-modal-k28vew83vj");
@@ -85,16 +89,32 @@ function App() {
         {invalidProcedure.map((procedure) => (
           <button
             key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
+            onClick={(e) =>
+              handleShowClinicosForm(
+                e,
+                procedure,
+                "phu",
+                "phu@clinicos.ai",
+                "1234567890",
+              )
+            }
           >
             {procedure}
           </button>
         ))}
         <h1>AI Supported Procedures</h1>
         {aiSupportedProcedures.map((procedure) => (
+          // key={procedure}
           <button
-            key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
+            onClick={(e) =>
+              handleShowClinicosForm(
+                e,
+                procedure,
+                "full name",
+                "example@exmaple.com",
+                "17075552222",
+              )
+            }
           >
             {procedure}
           </button>
@@ -103,7 +123,15 @@ function App() {
         {nonAiSupportedProceduresFace.map((procedure) => (
           <button
             key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
+            onClick={(e) =>
+              handleShowClinicosForm(
+                e,
+                procedure,
+                "phu",
+                "phu@clinicos.ai",
+                "1234567890",
+              )
+            }
           >
             {procedure}
           </button>
@@ -112,7 +140,15 @@ function App() {
         {nonAiSupportedProceduresBreast.map((procedure) => (
           <button
             key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
+            onClick={(e) =>
+              handleShowClinicosForm(
+                e,
+                procedure,
+                "phu",
+                "phu@clinicos.ai",
+                "1234567890",
+              )
+            }
           >
             {procedure}
           </button>
@@ -121,7 +157,15 @@ function App() {
         {nonAiSupportedProceduresBody.map((procedure) => (
           <button
             key={procedure}
-            onClick={(e) => handleShowClinicosForm(e, procedure)}
+            onClick={(e) =>
+              handleShowClinicosForm(
+                e,
+                procedure,
+                "phu",
+                "phu@clinicos.ai",
+                "1234567890",
+              )
+            }
           >
             {procedure}
           </button>
