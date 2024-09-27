@@ -2,23 +2,15 @@ const isMobile = window.innerWidth <= 768;
 const colorHexRegex = /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
 
 // script param
-var formName = "onboarding-scan";
-var clinicSdkKey = "";
-var themeColor = "#00B7F4";
 const scriptElement = document.currentScript;
-if (
-  scriptElement &&
-  scriptElement.hasAttribute("clinicSdkKey") &&
-  scriptElement.hasAttribute("themeColor")
-) {
-  clinicSdkKey = scriptElement.getAttribute("clinicSdkKey");
-  themeColor = scriptElement.getAttribute("themeColor");
-  if (!colorHexRegex.test(themeColor)) console.error("invalid color");
-} else {
-  console.error("script requires clinicSdkKey, and themeColor");
-}
 
-const iframeSrcScan = `https://form.clinicos.ai/${formName}/?clinicSdkKey=${clinicSdkKey}&themeColor=${encodeURIComponent(themeColor)}#`;
+const formName = scriptElement.getAttribute("formName") ?? "onboarding-scan";
+const clinicSdkKey = scriptElement.getAttribute("clinicSdkKey") ?? "";
+const bodyPartScan = scriptElement.getAttribute("bodyPartScan") ?? "";
+let themeColor = scriptElement.getAttribute("themeColor") ?? "#00B7F4";
+if (!colorHexRegex.test(themeColor)) themeColor = "#00B7F4";
+
+const iframeSrcScan = `https://form-staging.clinicos.ai/${formName}/?clinicSdkKey=${clinicSdkKey}&themeColor=${encodeURIComponent(themeColor)}&bodyPartScan=${bodyPartScan}#`;
 
 const modalBody = document.createElement("div");
 modalBody.id = "scan-modal-k28vew83vj";
@@ -99,9 +91,10 @@ window.addEventListener("procedure-update", (event) => {
   const name = event.detail.name || "";
   const email = event.detail.email || "";
   const phone = event.detail.phone || "";
+  const bodyPartScan = event.detail.bodyPartScan || "";
 
-  const iframeSrcScan = `https://form.clinicos.ai/${formName}/?clinicSdkKey=${clinicSdkKey}&themeColor=${encodeURIComponent(themeColor)}&procedure=${procedure}&name=${name}&email=${email}&phone=${phone}#`;
-  iframeClinicosOnboarding.src = iframeSrcScan;
+  const currentIframeSrcScan = `https://form-staging.clinicos.ai/${formName}/?clinicSdkKey=${clinicSdkKey}&themeColor=${encodeURIComponent(themeColor)}&procedure=${procedure}&name=${name}&email=${email}&phone=${phone}&bodyPartScan=${bodyPartScan}#`;
+  iframeClinicosOnboarding.src = currentIframeSrcScan;
 });
 
 window.addEventListener("message", (ev) => {
